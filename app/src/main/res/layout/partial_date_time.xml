@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="dateTimeField"
+            type="com.example.planner.ui.DateTimeField" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:day="@={dateTimeField.day}"
+            android:month="@={dateTimeField.month}"
+            android:year="@={dateTimeField.year}" />
+
+        <TimePicker
+            android:id="@+id/date_time_time_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hour="@={dateTimeField.hour}"
+            android:minute="@={dateTimeField.minute}"
+            android:timePickerMode="spinner" />
+
+    </LinearLayout>
+</layout>

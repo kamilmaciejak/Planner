@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="plan_title_min_length">5</integer>
+    <integer name="plan_title_max_length">50</integer>
+    <integer name="plan_description_lines">7</integer>
+</resources>

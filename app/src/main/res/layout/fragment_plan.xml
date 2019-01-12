@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MainActivity">
+
+    <data>
+
+        <import type="com.example.planner.domain.plan.PlanSelection" />
+        <variable
+            name="planViewModel"
+            type="com.example.planner.ui.main.plan.PlanViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/partial_app_bar" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/plan_list_label" />
+
+                    <TextView
+                        style="@style/LabelTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/text_plan_label_height"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{() -> planViewModel.load(PlanSelection.ALL)}"
+                        android:text="@string/plan_all_label"
+                        android:textColor="@android:color/holo_orange_light"
+                        planSelection="@{PlanSelection.ALL}"
+                        planSelectionValue="@{planViewModel.planSelection}" />
+
+                    <TextView
+                        style="@style/LabelTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/text_plan_label_height"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{() -> planViewModel.load(PlanSelection.DEFAULT)}"
+                        android:text="@string/plan_default_label"
+                        android:textColor="@android:color/holo_green_light"
+                        planSelection="@{PlanSelection.DEFAULT}"
+                        planSelectionValue="@{planViewModel.planSelection}" />
+
+                    <TextView
+                        style="@style/LabelTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/text_plan_label_height"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{() -> planViewModel.load(PlanSelection.DEADLINE)}"
+                        android:text="@string/plan_deadline_label"
+                        android:textColor="@android:color/holo_red_light"
+                        planSelection="@{PlanSelection.DEADLINE}"
+                        planSelectionValue="@{planViewModel.planSelection}" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/plan_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_plan" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/margin"
+            android:onClick="@{() -> planViewModel.addPlanDetails()}"
+            app:srcCompat="@drawable/ic_add" />
+
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

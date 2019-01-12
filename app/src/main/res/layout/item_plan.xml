@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="plan"
+            type="com.example.planner.database.PlanEntity" />
+        <variable
+            name="onPlanClickListener"
+            type="com.example.planner.ui.main.plan.OnPlanClickListener" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onPlanClickListener.onPlanClick(plan.id)}"
+        android:padding="@dimen/margin"
+        planTypeColor="@{plan.type}">
+
+        <TextView
+            style="@style/LabelTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{plan.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/app_name" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

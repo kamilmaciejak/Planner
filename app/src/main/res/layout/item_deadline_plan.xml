@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="plan"
+            type="com.example.planner.database.PlanEntity" />
+        <variable
+            name="onPlanClickListener"
+            type="com.example.planner.ui.main.plan.OnPlanClickListener" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onPlanClickListener.onPlanClick(plan.id)}"
+        android:padding="@dimen/margin"
+        planTypeColor="@{plan.type}">
+
+        <TextView
+            style="@style/LabelTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin"
+            android:singleLine="true"
+            android:text="@{plan.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/text_plan_deadline_days"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/text_plan_deadline_days"
+            style="@style/LabelTextView"
+            deadlineDays="@{plan.deadline}"
+            android:layout_width="@dimen/text_plan_deadline_days_width"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_plan_deadline"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="123" />
+
+        <ImageView
+            android:id="@+id/image_plan_deadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/text_plan_date"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_notifications" />
+
+        <TextView
+            android:id="@+id/text_plan_date"
+            style="@style/LabelTextView"
+            date="@{plan.deadline}"
+            android:layout_width="@dimen/text_plan_date_width"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="10.12\n10:20" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
